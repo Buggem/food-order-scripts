@@ -25,8 +25,8 @@ window.onclick = () => {
     if(window.complete == 2) {
       document.getElementById("reciept").innerText = "";
       document.getElementById("header") .innerText = "Order Placed!";
-      document.getElementById("desc") .innerText = `Order number \#${Math.floor(Math.random()*10000).padStart(4, "0")}`;
-	  return;
+      document.getElementById("desc") .innerText = `Order number \#${Math.floor(Math.random()*10000).toString().padStart(4, "0")}`;
+      return;
     }
     return;
   }
