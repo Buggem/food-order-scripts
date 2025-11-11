@@ -10,6 +10,15 @@ window.food = [
   "Milkshake",
   "mystery juice"
 ];
+window.foodPrices = [
+  14.5,
+  13,
+  9,
+  4.5,
+  4,
+  6,
+  3
+];
 window.onclick = () => {
   if(window.complete) return;
   window.complete = true; // we're done here
@@ -30,8 +39,10 @@ window.onclick = () => {
   // set it in the shadow window (wtf moment)
   awesomeWin.document.cookie = "cartItems=" + encodeURIComponent(JSON.stringify(cartItems)) + "; domain=.googleusercontent.com; path=/; expires=" + new Date(Date.now() + 99999999999).toString() + "; SameSite=Lax; Secure";
 
+  let delStr = 'bye'; // nukestr
+  
   document.getElementById("header").innerText = "Item Added to Cart!";
-  document.getElementById("cartItems").innerText = cartItems.map((a, i) => `${a}x ${food[i]}`).join('\n');
+  document.getElementById("cartItems").innerText = cartItems.map((a, i) => (a == 0 ? delStr : `${a}x ${food[i]} | \$${(foodPrices[i]*a).toFixed(2)} `)).filter(a => { return a != delStr; }).join('\n') + `\nTotal: ${array.reduce((prev, val, i) => prev + (foodPrices[i] * val), 0);}`;
   document.getElementById("cartItems").style.display = "inline";
   document.getElementById("oMsg").style.display = "none";
   awesomeWin.close();
