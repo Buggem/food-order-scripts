@@ -10,11 +10,15 @@ fetch("https://buggem.github.io/food-order-scripts/food.json").then(req => {
 	});
 });
 
+window.total = (cartItems) => {
+  return cartItems.reduce((prev, val, i) => prev + (foodPrices[i] * val), 0).toFixed(2);
+};
+
 window.reciept = (cartItems) => {
-  let delStr = 'bye'; // nukestr
-  
-  return cartItems.map((a, i) => (a == 0 ? delStr : `${a}x ${food[i]} | \$${(foodPrices[i]*a).toFixed(2)} `)).filter(a => { return a != delStr; }).join('\n') +
-    "\n\n\nTotal: $" + cartItems.reduce((prev, val, i) => prev + (foodPrices[i] * val), 0).toFixed(2);
+  return `${cartItems.map((a, i) => (a == 0 ? null : `${a}x ${food[i]} | \$${(foodPrices[i]*a).toFixed(2)} `)).filter(a => { return a != null; }).join('\n')}
+
+
+Total: \$${total(cartItems)}`;
 };
 window.onclick = () => {
   if(window.complete) return;
@@ -34,7 +38,7 @@ window.onclick = () => {
   cartItems[toaddIndex]++; // add
 
   // set it in the shadow window (wtf moment)
-  awesomeWin.document.cookie = "cartItems=" + encodeURIComponent(JSON.stringify(cartItems)) + "; domain=.googleusercontent.com; path=/; expires=" + new Date(Date.now() + 99999999999).toString() + "; SameSite=Lax; Secure";
+  awesomeWin.document.cookie = `cartItems=${encodeURIComponent(JSON.stringify(cartItems))}; domain=.googleusercontent.com; path=/; expires=${new Date(Date.now() + 99999999999).toString()}; SameSite=Lax; Secure`;
   
   document.getElementById("header").innerText = "Item Added to Cart!";
   document.getElementById("cartItems").innerText = reciept(cartItems);
