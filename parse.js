@@ -42,7 +42,7 @@ window.onclick = () => {
   let delStr = 'bye'; // nukestr
   
   document.getElementById("header").innerText = "Item Added to Cart!";
-  document.getElementById("cartItems").innerText = cartItems.map((a, i) => (a == 0 ? delStr : `${a}x ${food[i]} | \$${(foodPrices[i]*a).toFixed(2)} `)).filter(a => { return a != delStr; }).join('\n') + `\nTotal: ${array.reduce((prev, val, i) => prev + (foodPrices[i] * val), 0)}`;
+  document.getElementById("cartItems").innerText = cartItems.map((a, i) => (a == 0 ? delStr : `${a}x ${food[i]} | \$${(foodPrices[i]*a).toFixed(2)} `)).filter(a => { return a != delStr; }).join('\n') + `\nTotal: ${cartItems.reduce((prev, val, i) => prev + (foodPrices[i] * val), 0)}`;
   document.getElementById("cartItems").style.display = "inline";
   document.getElementById("oMsg").style.display = "none";
   awesomeWin.close();
