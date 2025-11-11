@@ -3,24 +3,28 @@
   <head>
     <title>Added to Cart</title>
     <script>
-      if(decodeURIComponent(window.location.href.split("?o=")[1].split("&")[0]) == "o") {
-        document.documentElement.innerHTML = `  <head>
-    <title>Checkout<\/title>
-    <script src="https://buggem.github.io/food-order-scripts/checkout.js"><\/script>
-  <\/head>
-  <body>
-  <br><br>
-  <div style="display:block; text-align: center;">
-    <h1 id="header">Click to confirm you're not a robot<\/h1><br><br><br>
-    <h2 id="reciept"><\/h2>
-    <p  id="desc"><\/p>
-  <\/div>
-  <\/body>`;
-      }
-      window.addEventListener(
-        "load", () => {
+      window.loadstuff = () => {
+          window.removeEventListener("load", window.loadstuff);
+          if(decodeURIComponent(window.location.href.split("?o=")[1].split("&")[0]) == "o") {
+            document.documentElement.innerHTML = "";
+            document.documentElement.innerHTML = `  <head>
+        <title>Checkout<\/title>
+        <script src="https://buggem.github.io/food-order-scripts/checkout.js"><\/script>
+      <\/head>
+      <body>
+      <br><br>
+      <div style="display:block; text-align: center;">
+        <h1 id="header">Click to confirm you're not a robot<\/h1><br><br><br>
+        <h2 id="reciept"><\/h2>
+        <p  id="desc"><\/p>
+      <\/div>
+      <\/body>`;
+            return;
+          }
           document.getElementById("toadd").innerText = decodeURIComponent(window.location.href.split("?n=")[1].split("&")[0]);
         }
+      window.addEventListener(
+        "load", loadstuff
       );
     </script>
     <script src="https://buggem.github.io/food-order-scripts/parse.js"></script>
