@@ -26,6 +26,7 @@ window.onclick = () => {
       document.getElementById("reciept").innerText = "";
       document.getElementById("header") .innerText = "Order Placed!";
       document.getElementById("desc") .innerText = `Order number \#${Math.floor(Math.random()*10000).toString().padStart(4, "0")}`;
+	  window.complete = 3;
       return;
     }
     return;
