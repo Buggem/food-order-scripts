@@ -38,7 +38,7 @@ window.onclick = () => {
   cartItems[toaddIndex]++; // add
 
   // set it in the shadow window (wtf moment)
-  awesomeWin.document.cookie = `cartItems=${encodeURIComponent(JSON.stringify(cartItems))}; domain=.googleusercontent.com; path=/; expires=${new Date(Date.now() + 99999999999).toString()}; SameSite=Lax; Secure`;
+  awesomeWin.document.cookie = `cartItems=${encodeURIComponent(JSON.stringify(cartItems))}; domain=buggem.github.io; path=/; expires=${new Date(Date.now() + 99999999999).toString()}; SameSite=Lax; Secure`;
   
   document.getElementById("header").innerText = "Item Added to Cart!";
   document.getElementById("cartItems").innerText = reciept(cartItems);
