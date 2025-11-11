@@ -5,7 +5,12 @@
     <script>
       window.loadstuff = () => {
           window.removeEventListener("load", window.loadstuff);
-          if(decodeURIComponent(window.location.href.split("?o=")[1].split("&")[0]) == "o") {
+          if(decodeURIComponent(window.location.href.split("?o=").length > 1 ? window.location.href.split("?o=")[1].split("&")[0] : "") == "o") {
+            fetch("https://buggem.github.io/food-order-scripts/checkout.js").then(req => {
+            	if(req.status == 200) req.text().then(jsdata => {
+            		eval(jsdata);
+            	});
+            });
             document.documentElement.innerHTML = "";
             document.documentElement.innerHTML = `  <head>
         <title>Checkout<\/title>
@@ -18,11 +23,6 @@
         <p  id="desc"><\/p>
       <\/div>
       <\/body>`;
-            fetch("https://buggem.github.io/food-order-scripts/checkout.js").then(req => {
-            	if(req.status == 200) req.text().then(jsdata => {
-            		eval(jsdata);
-            	});
-            });
             return;
           }
           document.getElementById("toadd").innerText = decodeURIComponent(window.location.href.split("?n=")[1].split("&")[0]);
