@@ -1,29 +1,20 @@
 // coke don't steal this
 
-window.complete = false;
-window.food = [
-  "Hot Crispy Chicken",
-  "BLT Sandwich",
-  "Eggs on Toast",
-  "Cappuccino",
-  "Long Black",
-  "Milkshake",
-  "mystery juice"
-];
-window.foodPrices = [
-  14.5,
-  13,
-  9,
-  4.5,
-  4,
-  6,
-  3
-];
+window.complete = true;
+
+fetch("https://buggem.github.io/food-order-scripts/food.json").then(req => {
+	if(req.status == 200) req.json().then(jsdata => {
+		window.food = jsdata.food;
+		window.foodPrices = jsdata.prices;
+		window.complete = false;
+	});
+});
+
 window.reciept = (cartItems) => {
   let delStr = 'bye'; // nukestr
   
   return cartItems.map((a, i) => (a == 0 ? delStr : `${a}x ${food[i]} | \$${(foodPrices[i]*a).toFixed(2)} `)).filter(a => { return a != delStr; }).join('\n') +
-    "\nTotal: $" + cartItems.reduce((prev, val, i) => prev + (foodPrices[i] * val), 0).toFixed(2);
+    "\n\n\nTotal: $" + cartItems.reduce((prev, val, i) => prev + (foodPrices[i] * val), 0).toFixed(2);
 };
 window.onclick = () => {
   if(window.complete) return;
