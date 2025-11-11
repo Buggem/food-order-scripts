@@ -43,7 +43,7 @@ window.onclick = () => {
   }
 
   // set it in the shadow window (wtf moment)
-  awesomeWin.document.cookie = `cartItems=; domain=.googleusercontent.com; path=/; expires=${new Date(0).toString()}; SameSite=Lax; Secure`;
+  awesomeWin.document.cookie = `cartItems=; domain=buggem.github.io; path=/; expires=${new Date(0).toString()}; SameSite=Lax; Secure`;
 
   document.getElementById("reciept").innerText = reciept(cartItems);
   document.getElementById("header") .innerText = "Are you sure you want to proceed?";
