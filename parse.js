@@ -32,7 +32,7 @@ window.onclick = () => {
 
   document.getElementById("header").innerText = "Item Added to Cart!";
   document.getElementById("cartItems").innerText = cartItems.map((a, i) => `${a}x ${food[i]}`).join('\n');
-  document.getElementById("cartWrap").style.display = "inline";
+  document.getElementById("cartItems").style.display = "inline";
   document.getElementById("oMsg").style.display = "none";
   awesomeWin.close();
 }
