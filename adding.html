@@ -3,7 +3,11 @@
   <head>
     <title>Added to Cart</title>
     <script>
-      document.getElementById("toadd").innerText = decodeURIComponent(window.location.href.split("?n=")[1].split("&")[0]);
+      window.addEventListener(
+        "load", () => {
+          document.getElementById("toadd").innerText = decodeURIComponent(window.location.href.split("?n=")[1].split("&")[0]);
+        }
+      );
     </script>
     <script src="https://buggem.github.io/food-order-scripts/parse.js"></script>
   </head>
