@@ -1,0 +1,18 @@
+<!doctype HTML>
+<html>
+  <head>
+    <title>Added to Cart</title>
+    <script>
+      document.getElementById("toadd").innerText = decodeURIComponent(window.location.href.split("?n=")[1].split("&")[0]);
+    </script>
+    <script src="https://buggem.github.io/food-order-scripts/parse.js"></script>
+  </head>
+  <body>
+  <br><br>
+  <div style="display:block; text-align: center;">
+    <h1 id="header">Click to confirm adding to cart</h1><br><br><br>
+    <p id="cartItems" style="display: none;">Loading...</p>
+    <h2 id="oMsg">Adding: <i id="toadd"></i></h2>
+  </div>
+  </body>
+</html>
