@@ -35,7 +35,7 @@ window.onclick = () => {
   toaddIndex = (toaddIndex < 0) ? 0 : toaddIndex;
   cartItems[toaddIndex]++; // add
 
-  localStorage.setItem("cartItems", encodeURIComponent(cartItems));
+  localStorage.setItem("cartItems", encodeURIComponent(JSON.stringify(cartItems)));
 
   document.getElementById("header").innerText = "Item Added to Cart!";
   document.getElementById("cartItems").innerText = reciept(cartItems);
