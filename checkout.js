@@ -40,11 +40,9 @@ window.onclick = () => {
     cartItems = JSON.parse(decodeURIComponent(cartItems)); // parse saved
   }
 
-  // set it in the shadow window (wtf moment)
-  localStorage.removeItem("cartItems");
-
   document.getElementById("reciept").innerText = reciept(cartItems);
   document.getElementById("header") .innerText = "Are you sure you want to proceed?";
   document.getElementById("desc") .innerText = `\$${total(cartItems)} will be charged to your account.\n\n(nothing will be charged, this is for demonstration purposes only)`;
 
+  localStorage.removeItem("cartItems");
 }
