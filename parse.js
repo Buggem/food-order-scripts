@@ -23,26 +23,22 @@ Total: \$${total(cartItems)}`;
 window.onclick = () => {
   if(window.complete) return;
   window.complete = true; // we're done here
-  
-  let awesomeWin = window.open(document.location.href); // really stupid iframe without src logic, at least in ff and chrome
-  
-  let cartItems = awesomeWin.document.cookie.split("cartItems=");
-  if(cartItems.length < 2) {
+
+  let cartItems = localStorage.getItem("cartItems");
+  if(cartItems == null) {
     cartItems = food.map(a => 0); // generate array
   } else {
-    cartItems = JSON.parse(decodeURIComponent(cartItems[1].split(";")[0])); // parse saved
+    cartItems = JSON.parse(decodeURIComponent(cartItems)); // parse saved
   }
 
   let toaddIndex = food.indexOf(document.getElementById("toadd").innerText); // get item index
   toaddIndex = (toaddIndex < 0) ? 0 : toaddIndex;
   cartItems[toaddIndex]++; // add
 
-  // set it in the shadow window (wtf moment)
-  awesomeWin.document.cookie = `cartItems=${encodeURIComponent(JSON.stringify(cartItems))}; domain=buggem.github.io; path=/; expires=${new Date(Date.now() + 99999999999).toString()}; SameSite=Lax; Secure`;
-  
+  localStorage.setItem("cartItems", encodeURIComponent(cartItems));
+
   document.getElementById("header").innerText = "Item Added to Cart!";
   document.getElementById("cartItems").innerText = reciept(cartItems);
   document.getElementById("cartItems").style.display = "inline";
   document.getElementById("oMsg").style.display = "none";
-  awesomeWin.close();
 }
