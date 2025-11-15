@@ -32,22 +32,19 @@ window.onclick = () => {
     return;
   }
   window.complete = 2; // we're done here
-  
-  let awesomeWin = window.open(document.location.href); // really stupid iframe without src logic, at least in ff and chrome
-  
-  let cartItems = awesomeWin.document.cookie.split("cartItems=");
-  if(cartItems.length < 2) {
+    
+  let cartItems = localStorage.getItem("cartItems");
+  if(cartItems == null) {
     cartItems = food.map(a => 0); // generate array
   } else {
-    cartItems = JSON.parse(decodeURIComponent(cartItems[1].split(";")[0])); // parse saved
+    cartItems = JSON.parse(decodeURIComponent(cartItems)); // parse saved
   }
 
   // set it in the shadow window (wtf moment)
-  awesomeWin.document.cookie = `cartItems=; domain=buggem.github.io; path=/; expires=${new Date(0).toString()}; SameSite=Lax; Secure`;
+  localStorage.removeItem("cartItems");
 
   document.getElementById("reciept").innerText = reciept(cartItems);
   document.getElementById("header") .innerText = "Are you sure you want to proceed?";
   document.getElementById("desc") .innerText = `\$${total(cartItems)} will be charged to your account.\n\n(nothing will be charged, this is for demonstration purposes only)`;
 
-  awesomeWin.close();
 }
