@@ -42,7 +42,7 @@ window.engaged = () => {
   }
 
   document.getElementById("reciept").innerText = reciept(cartItems);
-  document.getElementById("header") .innerHTML = "Are you sure you want to proceed?<br><br><button id=\"orderBtn\" onclick=\"engaged();\">Confirm Order</a>";
+  document.getElementById("header") .innerHTML = "Are you sure you want to proceed?<br><br><button id=\"orderBtn\" onclick=\"engaged();\">Confirm Order</button>";
   document.getElementById("desc") .innerText = `\$${total(cartItems)} will be charged to your account.\n\n(nothing will be charged, this is for demonstration purposes only)`;
 
   localStorage.removeItem("cartItems");
