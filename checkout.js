@@ -10,16 +10,11 @@ fetch("https://buggem.github.io/food-order-scripts/food.json").then(req => {
 	});
 });
 
-window.total = (cartItems) => {
-  return cartItems.reduce((prev, val, i) => prev + (foodPrices[i] * val), 0).toFixed(2);
-};
-
-window.reciept = (cartItems) => {
-  return `${cartItems.map((a, i) => (a == 0 ? null : `${a}x ${food[i]} | \$${(foodPrices[i]*a).toFixed(2)} `)).filter(a => { return a != null; }).join('\n')}
-
-
-Total: \$${total(cartItems)}`;
-};
+fetch("https://buggem.github.io/food-order-scripts/shared.js").then(req => {
+	if(req.status == 200) req.text().then(jsdata => {
+		eval(jsdata);
+	});
+});
 
 window.onclick = null;
 window.engaged = () => {
