@@ -1,36 +1,40 @@
 // coke don't steal this
 
-window.complete = 1;
+window.complete = 0;
+window.ready = 0;
 
 fetch("https://buggem.github.io/food-order-scripts/food.json").then(req => {
 	if(req.status == 200) req.json().then(jsdata => {
 		window.food = jsdata.food;
 		window.foodPrices = jsdata.prices;
-		window.complete = 0;
+		window.ready++;
 	});
 });
 
 fetch("https://buggem.github.io/food-order-scripts/shared.js").then(req => {
 	if(req.status == 200) req.text().then(jsdata => {
 		eval(jsdata);
+		window.ready++;
 	});
 });
 
 window.onclick = null;
 window.engaged = () => {
+  if(window.ready < 2) return;
+  
   window.onclick = window.engaged;
-
+  
   if(window.complete > 0) {
-    if(window.complete == 2) {
+    if(window.complete == 1) {
       document.getElementById("reciept").innerText = "";
       document.getElementById("header") .innerText = "Order Placed!";
       document.getElementById("desc") .innerText = `Order number \#${Math.floor(Math.random()*10000).toString().padStart(4, "0")}`;
-	  window.complete = 3;
+	  window.complete = 2;
       return;
     }
     return;
   }
-  window.complete = 2; // we're done here
+  window.complete = 1; // we're done here
     
   let cartItems = localStorage.getItem("cartItems");
   if(cartItems == null) {
