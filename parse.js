@@ -16,8 +16,8 @@ fetch("https://buggem.github.io/food-order-scripts/shared.js").then(req => {
 		window.ready++;
 	});
 });
-
-window.onclick = () => {
+window.onclick = null;
+window.engaged = () => {
   if(window.complete || window.ready < 2) return;
   window.complete = 1; // we're done here
 
