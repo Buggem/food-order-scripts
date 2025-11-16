@@ -38,4 +38,5 @@ window.engaged = () => {
   document.getElementById("cartItems").innerText = reciept(cartItems);
   document.getElementById("cartItems").style.display = "inline";
   document.getElementById("oMsg").style.display = "none";
+  document.getElementById("orderBtn").style.display = "none";
 }
