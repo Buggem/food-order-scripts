@@ -50,11 +50,30 @@
       );
     </script>
     <script src="https://buggem.github.io/food-order-scripts/parse.js"></script>
+    <style>      
+    #orderBtn {
+      padding: 10px 15px;
+      font-size: 30pt;
+      border: 4px solid #40aed1;
+      border-radius: 10px;
+      background: #4cd5ff;
+      color: white;
+      transition: border-radius 50ms, background 70ms, border 30ms;
+    }
+    
+    #orderBtn:hover {
+      border: 4px solid #4ac2e8;
+      border-radius: 13px;
+      background: #3fb5d9;
+      color: white;
+    }
+    </style>
   </head>
   <body>
   <br><br>
   <div style="display:block; text-align: center;">
     <h1 id="header">Click to confirm adding to cart</h1><br><br><br>
+    <button id="orderBtn" onclick="engaged();">Confirm</button><br>
     <p id="cartItems" style="display: none;">Loading...</p>
     <h2 id="oMsg">Adding: <i id="toadd"></i></h2>
   </div>
