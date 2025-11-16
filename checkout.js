@@ -22,8 +22,6 @@ window.onclick = null;
 window.engaged = () => {
   if(window.ready < 2) return;
   
-  window.onclick = window.engaged;
-  
   if(window.complete > 0) {
     if(window.complete == 1) {
       document.getElementById("reciept").innerText = "";
@@ -35,7 +33,7 @@ window.engaged = () => {
     return;
   }
   window.complete = 1; // we're done here
-    
+
   let cartItems = localStorage.getItem("cartItems");
   if(cartItems == null) {
     cartItems = food.map(a => 0); // generate array
@@ -44,7 +42,7 @@ window.engaged = () => {
   }
 
   document.getElementById("reciept").innerText = reciept(cartItems);
-  document.getElementById("header") .innerText = "Are you sure you want to proceed?";
+  document.getElementById("header") .innerHTML = "Are you sure you want to proceed?<br><br><button id=\"orderBtn\" onclick=\"engaged();\">Confirm Order</a>";
   document.getElementById("desc") .innerText = `\$${total(cartItems)} will be charged to your account.\n\n(nothing will be charged, this is for demonstration purposes only)`;
 
   localStorage.removeItem("cartItems");
