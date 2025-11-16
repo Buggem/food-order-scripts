@@ -22,7 +22,7 @@ Total: \$${total(cartItems)}`;
 };
 
 window.onclick = null;
-window.firipinEngage = () => {
+window.engaged = () => {
   if(window.complete > 0) {
     if(window.complete == 2) {
       document.getElementById("reciept").innerText = "";
@@ -32,7 +32,7 @@ window.firipinEngage = () => {
       return;
     }
 	if(window.complete == 1) {
-		window.onclick = window.firipinEngage;
+		window.onclick = window.engaged;
 	}
     return;
   }
