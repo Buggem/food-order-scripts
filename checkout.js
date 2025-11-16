@@ -23,6 +23,8 @@ Total: \$${total(cartItems)}`;
 
 window.onclick = null;
 window.engaged = () => {
+  window.onclick = window.engaged;
+
   if(window.complete > 0) {
     if(window.complete == 2) {
       document.getElementById("reciept").innerText = "";
@@ -31,9 +33,6 @@ window.engaged = () => {
 	  window.complete = 3;
       return;
     }
-	if(window.complete == 1) {
-		window.onclick = window.engaged;
-	}
     return;
   }
   window.complete = 2; // we're done here
